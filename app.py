@@ -1,6 +1,5 @@
-from webui import WebUI # Add WebUI to your imports
 from flask import Flask, redirect, url_for, render_template, request, flash, jsonify, abort
-from forms import ContactForm
+# from forms import ContactForm
 import tempfile
 import pandas as pd
 import sys
@@ -10,7 +9,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'my secret'
 app.config['DEBUG'] = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-ui = WebUI(app, debug=True)
 
 df = pd.DataFrame()
 cris_file_name = "No file"
@@ -26,7 +24,6 @@ def index():
 
 
 # API routes
-
 @app.route("/new_contact", methods=('GET', 'POST'))
 def new_contact():
     '''
@@ -73,5 +70,4 @@ def search():
 
 
 if __name__ == "__main__":
-    #app.run(host="0.0.0.0")
-    ui.run()
+    app.run(host="0.0.0.0")
